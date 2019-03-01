@@ -1,0 +1,110 @@
+[
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 0,
+    "ageMax": 4,
+    "medications": [
+      {
+        "name": "albuterol sulfate",
+        "dosage": "0.5mL twice daily",
+        "ndcCode": "50090-0516"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 5,
+    "ageMax": 11,
+    "medications": [
+      {
+        "name": "albuterol sulfate",
+        "dosage": "3mL twice daily",
+        "ndcCode": "50090-0516"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 12,
+    "ageMax": 100,
+    "medications": [
+      {
+        "name": "albuterol sulfate",
+        "dosage": "3mL twice daily",
+        "ndcCode": "50090-0516"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 0,
+    "ageMax": 4,
+    "medications": [
+      {
+        "name": "budesonide",
+        "dosage": "0.5mg once per day",
+        "ndcCode": "0093-6816"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 5,
+    "ageMax": 11,
+    "medications": [
+      {
+        "name": "budesonide",
+        "dosage": "1mg once per day",
+        "ndcCode": "0093-6816"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 12,
+    "ageMax": 100,
+    "medications": [
+      {
+        "name": "budesonide",
+        "dosage": "1.5mg once per day",
+        "ndcCode": "0093-6816"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 0,
+    "ageMax": 4,
+    "medications": [
+      {
+        "name": "fluticasone",
+        "dosage": "not recommended",
+        "ndcCode": "50090-0968"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 5,
+    "ageMax": 11,
+    "medications": [
+      {
+        "name": "fluticasone",
+        "dosage": "100/50 mcg twice per day",
+        "ndcCode": "50090-0968"
+      }
+    ]
+  },
+  {
+    "code": "smart-Condition-393",
+    "ageMin": 12,
+    "ageMax": 100,
+    "medications": [
+      {
+        "name": "fluticasone",
+        "dosage": "250/50 mcg twice per day",
+        "ndcCode": "50090-0968"
+      }
+    ]
+  }
+]

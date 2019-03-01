@@ -3,7 +3,9 @@
   <head>
      <title>Simple Auth App</title>
      <link rel='stylesheet' type='text/css' href='styles/styles.css'>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
     <div id='errors'>
@@ -35,49 +37,40 @@
           <td id='birthdate'></td>
         </tr>
       </table>
-      <h2>Observation Resource</h2>
-      <table>
-        <tr>
-          <th>Height:</th>
-          <td id='height'></td>
-        </tr>
-        <tr>
-          <th>Systolic Blood Pressure:</th>
-          <td id='systolicbp'></td>
-
-        </tr>
-        <tr>
-          <th>Diastolic Blood Pressure:</th>
-          <td id='diastolicbp'></td>
-        </tr>
-        <tr>
-          <th>LDL:</th>
-          <td id='ldl'></td>
-        </tr>
-        <tr>
-          <th>HDL:</th>
-          <td id='hdl'></td>
-        </tr>
-      </table>
     </div>
+    <!-- FHIR Client JS Library -->
+    <script src='vendor/fhir-client-v0.1.15.js'></script>
+    <!-- Momentjs for calculating dates -->
+    <script src='vendor/moment.js'></script>
     <!-- Application-level javascript-->
     <script src='scripts/get-data.js'></script>
 
-    <!-- FHIR Client JS Library -->
-    <script src='vendor/fhir-client-v0.1.15.js'></script>
 
     <script>
-      extractData().then(
-        //Display Patient Demographics and Observations if extractData was success
-        function(p) {
-          drawVisualization(p);
-        },
-        //Display 'Failed to call FHIR Service' if extractData failed
-        function() {
-          $('#loading').hide();
-          $('#errors').html('<p> Failed to call FHIR Service </p>');
-        }
-      );
+      $.getJSON('/scripts/medications.json')
+      .done(function(data) {
+        window.medicationsInfo = data;
+        console.log(data)
+        extractData().then(
+          // show the patient data
+          function(response) {
+            console.log(response)
+            var p = response.patient;
+            displayPatientData(p);
+            var r = response.reccommendations;
+            displayReccomendations(r);
+          },
+          // Display an error message if extractData failed
+          function() {
+            $('#loading').hide();
+            $('#errors').html('<p> Failed to call FHIR Service </p>');
+          }
+        );
+      })
+      .fail(function() {
+        $('#loading').hide();
+        $('#errors').html('<p> Failed to retrieve reccommendations </p>');
+      });
     </script>
 </body>
 </html>
