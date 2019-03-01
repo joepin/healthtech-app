@@ -47,7 +47,7 @@
 
 
     <script>
-      $.getJSON('/scripts/medications.json')
+      $.getJSON('./scripts/medications.json')
       .done(function(data) {
         window.medicationsInfo = data;
         console.log(data)
