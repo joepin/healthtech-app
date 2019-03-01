@@ -52,7 +52,7 @@
 
           var response = {
             patient: demoData,
-            reccomendations: recs
+            recommendations: recs
           };
 
           ret.resolve(response);
