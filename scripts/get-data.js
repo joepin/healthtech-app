@@ -152,7 +152,7 @@
           <tr>
             <td>${med.name}</td>
             <td>${med.dosage}</td>
-            <td>${med.ndcCode}</td>
+            <td><a href="https://ndclist.com/?s=${med.ndcCode}" target="blank">${med.ndcCode}</a></td>
             <td>${current.snomed}</td>
           </tr>`;
           $newTableBody.append($(newRow));
