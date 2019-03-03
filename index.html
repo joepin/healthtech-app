@@ -2,8 +2,11 @@
 <html>
   <head>
      <title>Simple Auth App</title>
+     <!-- load custom styles first -->
      <link rel='stylesheet' type='text/css' href='styles/styles.css'>
+     <!-- then materialize -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
@@ -15,28 +18,19 @@
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
-    <div id='holder' >
-      <h2>Example-SMART-App</h2>
-
-      <h2>Patient Resource</h2>
-      <table>
-        <tr>
-          <th>First Name:</th>
-          <td id='fname'></td>
-        </tr>
-        <tr>
-          <th>Last Name:</th>
-          <td id='lname'></td>
-        </tr>
-        <tr>
-          <th>Gender:</th>
-          <td id='gender'></td>
-        </tr>
-        <tr>
-          <th>Date of Birth:</th>
-          <td id='birthdate'></td>
-        </tr>
-      </table>
+    <div id='holder' class='container'>
+      <h2>Asthma Analyzer</h2>
+      <h4>Patient Info</h4>
+      <div class="row">
+        <div class="col l4 m4 s12">Name: <span id="fname"></span> <span id="lname"></span></div>
+        <div class="col l3 m3 s6">Gender: <span id="gender"></span></div>
+        <div class="col l3 m3 s6">DOB: <span id="birthdate"></span></div>
+        <div class="col l2 m2 s6">Age: <span id="age"></span></div>
+      </div>
+      <h4>Recommendations</h4>
+      <div id="results">
+        
+      </div>
     </div>
     <!-- FHIR Client JS Library -->
     <script src='vendor/fhir-client-v0.1.15.js'></script>
@@ -47,6 +41,15 @@
 
 
     <script>
+      function showError(m) {
+        var message = m;
+        if (m === null || m === '' || !m) {
+          message = '<p class="red-text"> Failed to retrieve reccommendations </p>';
+        }
+        $('#loading').hide();
+        $('#errors').html(message);
+      }
+
       $.getJSON('./scripts/medications.json')
       .done(function(data) {
         window.medicationsInfo = data;
@@ -61,16 +64,10 @@
             displayReccomendations(r);
           },
           // Display an error message if extractData failed
-          function() {
-            $('#loading').hide();
-            $('#errors').html('<p> Failed to call FHIR Service </p>');
-          }
+          showError
         );
       })
-      .fail(function() {
-        $('#loading').hide();
-        $('#errors').html('<p> Failed to retrieve reccommendations </p>');
-      });
+      .fail(showError);
     </script>
 </body>
 </html>

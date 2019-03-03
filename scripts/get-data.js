@@ -117,10 +117,50 @@
     $('#lname').html(p.lname);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
+    $('#age').html(parseInt(p.age, 10));
   };
 
   window.displayReccomendations = function(r) {
     console.log(r)
+    var $results = $('#results');
+    if (r === 'none') {
+      var $newParagraph = $('<p>The selected patient has no asthmatic conditions</p>');
+      $results.append($newParagraph);
+    } else {
+      var $message = $(`<p>Based on the patient's demographic data, we recommend the follwoing medication plan:</p>`);
+      $results.append($message);
+      var $newTable = $(`<table class='highlight'></table>`);
+      $newTable.append(`
+        <thead>
+          <tr>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>NDC Code</th>
+            <th>Reason Code</th>
+          </tr>
+        </thead>`);
+      var $newTableBody = $(`<tbody></tbody>`)
+      for (var i = 0; i < r.length; i++) {
+        var current = r[i];
+        console.log(current)
+        var meds = current.medications;
+        console.log(meds)
+        for (var j = 0; j < meds.length; j++) {
+          console.log('here')
+          var med = meds[j];
+          var newRow = `
+          <tr>
+            <td>${med.name}</td>
+            <td>${med.dosage}</td>
+            <td>${med.ndcCode}</td>
+            <td>${current.snomed}</td>
+          </tr>`;
+          $newTableBody.append($(newRow));
+        }
+      }
+      $newTable.append($newTableBody);
+      $results.append($newTable);
+    }
   };
 
 })(window);
