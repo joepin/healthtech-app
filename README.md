@@ -8,7 +8,7 @@ Open the [SMART on FHIR testing launch page](http://launch.smarthealthit.org/?au
 
 ### Sample Patients
 
-To see our results, please select a patient that has an asthma condition. We used the following in our testing:
+To see our app in action, please select a patient that has an asthma condition. We used the following sample patients from the SMART sample data set in our testing:
 
 - Michael I. Lewis
 
