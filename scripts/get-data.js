@@ -28,8 +28,6 @@
 
         // register success callbacks on the fetches
         $.when(pt, conds).done(function(patient, conditions) {
-          console.log(patient)
-          console.log(conditions)
           var medicationsInfo = window.medicationsInfo;
 
           var demoData = getDemoData(patient);
@@ -37,13 +35,10 @@
           var recs = [];
           var age = demoData.age;
           if (asthmaConditions.length > 0) {
-            console.log(medicationsInfo)
             for (var i = 0; i < medicationsInfo.length; i++) {
               var current = medicationsInfo[i];
-              console.log(age, current)
               if (age >= current.ageMin && age <= current.ageMax) {
                 recs.push(current);
-                console.log(true, current)
               }
             }
           } else {
@@ -93,7 +88,6 @@
       var asthmaConditionsCodes = ['smart-Condition-393', 'smart-Condition-344'];
       var patientAsthmaCodes = []
       for (var i = 0; i < conditions.length; i++) {
-        console.log(conditions[i])
         var current = conditions[i]
         for (var j = 0; j < asthmaConditionsCodes.length; j++) {
           if (current.id === asthmaConditionsCodes[j]) {
@@ -101,7 +95,6 @@
           }
         }
       }
-      console.log(patientAsthmaCodes)
       return patientAsthmaCodes;
     }
 
@@ -121,7 +114,6 @@
   };
 
   window.displayReccomendations = function(r) {
-    console.log(r)
     var $results = $('#results');
     if (r === 'none') {
       var $newParagraph = $('<p>The selected patient has no asthmatic conditions</p>');
@@ -142,11 +134,8 @@
       var $newTableBody = $(`<tbody></tbody>`)
       for (var i = 0; i < r.length; i++) {
         var current = r[i];
-        console.log(current)
         var meds = current.medications;
-        console.log(meds)
         for (var j = 0; j < meds.length; j++) {
-          console.log('here')
           var med = meds[j];
           var newRow = `
           <tr>

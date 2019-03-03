@@ -53,11 +53,9 @@
       $.getJSON('./scripts/medications.json')
       .done(function(data) {
         window.medicationsInfo = data;
-        console.log(data)
         extractData().then(
           // show the patient data
           function(response) {
-            console.log(response)
             var p = response.patient;
             displayPatientData(p);
             var r = response.recommendations;
